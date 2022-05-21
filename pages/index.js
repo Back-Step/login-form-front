@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { set, useForm } from 'react-hook-form';
+import axios from 'axios';
 
 const Home = () => {
   const [user, setUser] = useState();
@@ -11,7 +12,15 @@ const Home = () => {
     watch,
   } = useForm();
   const onSubmit = ({ username, password, remember }) => {
-    // You should handle login logic with username, password and remember form data
+    axios({
+      method: 'post',
+      url: 'http://127.0.0.1:8000/',
+      data: {
+        username,
+        password,
+        remember,
+      },
+    });
     setUser({ name: username });
   };
 
